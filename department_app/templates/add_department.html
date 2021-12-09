@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Add Department
+{% endblock %}
+
+{% block content %}
+  <main>
+    <div class="container">
+      <h1 class="page-title">
+        Add Department
+      </h1>
+      <form method="POST" class="form-add-department">
+        {{ form.csrf_token }}
+        {{ form.name.label() }}
+        {{ form.name(class="form-control", placeholder="Department name") }}
+        {{ form.submit(class="btn btn-primary") }}
+    </form>
+    </div>
+  </main>
+{% endblock %}

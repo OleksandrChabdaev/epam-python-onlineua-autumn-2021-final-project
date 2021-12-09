@@ -23,7 +23,6 @@ class DepartmentServices:
         if name:
             department = Department.query.get_or_404(department_id)
             department.name = name
-            db.session.add(department)
             db.session.commit()
 
     @staticmethod
@@ -36,6 +35,7 @@ class DepartmentServices:
         return round(average_salary, 2)
 
     @staticmethod
-    def delete(department):
+    def delete(department_id):
+        department = Department.query.get_or_404(department_id)
         db.session.delete(department)
         db.session.commit()

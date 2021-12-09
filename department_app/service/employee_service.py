@@ -50,6 +50,7 @@ class EmployeeServices:
         db.session.commit()
 
     @staticmethod
-    def delete(employee):
+    def delete(employee_id):
+        employee = Employee.query.get_or_404(employee_id)
         db.session.delete(employee)
         db.session.commit()

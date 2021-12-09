@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Add Employee
+{% endblock %}
+
+{% block content %}
+  <main>
+    <div class="container">
+      <h1 class="page-title">
+        Add Employee
+      </h1>
+      <form method="POST" class="form-add-employee">
+        {{ form.csrf_token }}
+        {{ form.first_name.label() }}
+        {{ form.first_name(class="form-control", placeholder="First Name") }}
+        {{ form.last_name.label() }}
+        {{ form.last_name(class="form-control", placeholder="Last Name") }}
+        {{ form.department.label() }}
+        {{ form.department(class="form-control", placeholder="Department") }}
+        {{ form.birthdate.label() }}
+        {{ form.birthdate(class="form-control", placeholder="Birthdate") }}
+        {{ form.salary.label() }}
+        {{ form.salary(class="form-control", placeholder="Salary") }}
+        {{ form.submit(class="btn btn-primary") }}
+    </form>
+    </div>
+  </main>
+{% endblock %}

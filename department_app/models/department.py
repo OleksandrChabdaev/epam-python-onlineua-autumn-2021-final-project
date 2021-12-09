@@ -14,12 +14,5 @@ class Department(db.Model):
         self.name = name
         self.employees = employees if employees else []
 
-    def to_dict(self):
-        return {
-            'id': self.id,
-            'name': self.name,
-            'employees': [employee.to_dict() for employee in self.employees]
-        }
-
     def __repr__(self):
         return f'Department: {self.name}'
