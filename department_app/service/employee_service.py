@@ -1,6 +1,7 @@
-from department_app import db
-from department_app.models.employee import Employee
 from datetime import datetime
+from department_app import db
+from department_app.models.department import Department
+from department_app.models.employee import Employee
 
 
 class EmployeeServices:
@@ -27,7 +28,7 @@ class EmployeeServices:
             first_name=first_name,
             last_name=last_name,
             department=department_id,
-            birthdate=datetime.strftime(birthdate, '%Y/%m/%d'),
+            birthdate=datetime.strptime(birthdate, '%Y/%m/%d'),
             salary=salary
         )
         db.session.add(employee)
@@ -54,3 +55,15 @@ class EmployeeServices:
         employee = Employee.query.get_or_404(employee_id)
         db.session.delete(employee)
         db.session.commit()
+
+    @staticmethod
+    def to_dict(employee_id):
+        employee = EmployeeServices.get_by_id(employee_id)
+        return {
+            'id': employee.id,
+            'first_name': employee.first_name,
+            'last_name': employee.last_name,
+            'department': Department.query.get_or_404(employee.department_id).name,
+            'birthdate': employee.birthdate.strftime('%Y-%m-%d'),
+            'salary': employee.salary
+        }

@@ -1,5 +1,6 @@
 from department_app import db
 from department_app.models.department import Department
+from department_app.service.employee_service import EmployeeServices
 
 
 class DepartmentServices:
@@ -39,3 +40,14 @@ class DepartmentServices:
         department = Department.query.get_or_404(department_id)
         db.session.delete(department)
         db.session.commit()
+
+    @staticmethod
+    def to_dict(department_id):
+        department = DepartmentServices.get_by_id(department_id)
+        return {
+            'id': department.id,
+            'name': department.name,
+            'employees_count': len(department.employees),
+            'average_salary': DepartmentServices.get_average_salary(department),
+            'employees': [EmployeeServices.to_dict(employee.id) for employee in department.employees]
+        }

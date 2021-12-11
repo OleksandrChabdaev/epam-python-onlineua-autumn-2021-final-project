@@ -1,5 +1,4 @@
 from department_app import db
-from .department import Department
 
 
 class Employee(db.Model):
