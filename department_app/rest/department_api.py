@@ -1,4 +1,4 @@
-from flask import jsonify, make_response, request
+from flask import jsonify, make_response
 from flask_restful import Resource, reqparse
 from department_app.models.department import Department
 from department_app.service.department_service import DepartmentServices

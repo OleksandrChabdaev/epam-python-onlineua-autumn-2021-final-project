@@ -1,4 +1,3 @@
-from datetime import datetime
 from department_app import db
 from department_app.models.department import Department
 from department_app.models.employee import Employee
@@ -28,7 +27,7 @@ class EmployeeServices:
             first_name=first_name,
             last_name=last_name,
             department=department_id,
-            birthdate=datetime.strptime(birthdate, '%Y/%m/%d'),
+            birthdate=birthdate,
             salary=salary
         )
         db.session.add(employee)

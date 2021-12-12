@@ -36,25 +36,13 @@
               </a>
             </td>
             <td class="table-cell text-center">
-              {% if employee.department %}
-                {{ employee.department.name }}
-              {% else %}
-                -
-              {% endif %}
+                {{ employee.department }}
             </td>
             <td class="table-cell text-center">
-              {% if employee.birthdate %}
-                {{ employee.birthdate }}
-              {% else %}
-                -
-              {% endif %}
+              {{ employee.birthdate }}
             </td>
             <td class="table-cell text-end">
-              {% if employee.salary %}
-                {{ employee.salary }}
-              {% else %}
-                0
-              {% endif %}
+              {{ employee.salary }}
             </td>
             <td class="table-cell text-center">
               <a href="{{ url_for('edit_employee', employee_id=employee.id) }}" class="table-link link-dark">
