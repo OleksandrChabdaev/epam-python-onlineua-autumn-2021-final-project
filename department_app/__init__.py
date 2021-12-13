@@ -1,3 +1,6 @@
+"""
+Initializes web application and web service.
+"""
 import os.path
 from decouple import config
 from flask import Flask

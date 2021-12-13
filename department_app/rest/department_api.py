@@ -1,3 +1,6 @@
+"""
+Defines department REST API.
+"""
 from flask import jsonify, make_response
 from flask_restful import Resource, reqparse
 from department_app.models.department import Department
@@ -5,14 +8,25 @@ from department_app.service.department_service import DepartmentServices
 
 
 class DepartmentListApi(Resource):
+    """
+    Department list API.
+    """
 
     @staticmethod
     def get():
+        """
+        GET request handler for department list API.
+        :return: department list json representation
+        """
         departments = DepartmentServices.get_all()
         return jsonify([DepartmentServices.to_dict(department.id) for department in departments])
 
     @staticmethod
     def post():
+        """
+        POST request handler for department list API.
+        :return: department json representation or error message and status code
+        """
         parser = reqparse.RequestParser()
         parser.add_argument('name')
         args = parser.parse_args()
@@ -31,9 +45,17 @@ class DepartmentListApi(Resource):
 
 
 class DepartmentApi(Resource):
+    """
+    Department API.
+    """
 
     @staticmethod
     def get(department_id):
+        """
+        GET request handler for department API.
+        :param department_id: department id
+        :return: department json representation or error message and status code
+        """
         try:
             department = DepartmentServices.get_by_id(department_id)
             return jsonify(DepartmentServices.to_dict(department.id))
@@ -42,6 +64,11 @@ class DepartmentApi(Resource):
 
     @staticmethod
     def put(department_id):
+        """
+        PUT request handler for department API.
+        :param department_id: department id
+        :return: department json representation or error message and status code
+        """
         parser = reqparse.RequestParser()
         parser.add_argument('name')
         args = parser.parse_args()
@@ -61,6 +88,11 @@ class DepartmentApi(Resource):
 
     @staticmethod
     def delete(department_id):
+        """
+        DELETE request handler for department API.
+        :param department_id: department id
+        :return: message and status code
+        """
         if not DepartmentServices.get_by_id(department_id):
             return make_response({'message': 'Department not found'}, 404)
         DepartmentServices.delete(department_id)

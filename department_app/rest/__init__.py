@@ -1,10 +1,16 @@
+"""
+Defines department and employee REST API.
+"""
 from department_app import api
-
 from . import department_api
 from . import employee_api
 
 
 def init_api():
+    """
+    Initializes REST API endpoints.
+    :return: None
+    """
     api.add_resource(
         department_api.DepartmentListApi,
         '/api/departments',

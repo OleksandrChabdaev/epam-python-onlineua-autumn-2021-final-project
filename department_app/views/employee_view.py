@@ -1,3 +1,6 @@
+"""
+Defines employee web application view.
+"""
 import requests
 from datetime import datetime
 from flask import redirect, render_template, url_for
@@ -10,6 +13,9 @@ host = 'http://127.0.0.1:5000/'
 
 
 class EmployeeForm(FlaskForm):
+    """
+    User form to manage employees.
+    """
 
     first_name = StringField('First Name', validators=[DataRequired()])
     last_name = StringField('Last Name', validators=[DataRequired()])
@@ -20,12 +26,19 @@ class EmployeeForm(FlaskForm):
 
     @classmethod
     def update_departments_list(cls):
+        """
+        Updates department list from database.
+        :return: None
+        """
         url = f'{host}api/departments'
         departments = requests.get(url).json()
         cls.department = SelectField(choices=[department['name'] for department in departments])
 
 
 class SearchForm(FlaskForm):
+    """
+    User form to search employees.
+    """
     date_from = DateField('Birthdate From', validators=[DataRequired()])
     date_to = DateField('Birthdate To', validators=[DataRequired()])
     submit = SubmitField('Submit')
@@ -33,6 +46,10 @@ class SearchForm(FlaskForm):
 
 @app.route('/employees/', methods=['GET'])
 def show_employees():
+    """
+    Returns rendered template to show all employees.
+    :return: rendered template to show all employees
+    """
     url = f'{host}api/employees'
     employees = requests.get(url).json()
     return render_template('employees.html', employees=employees)
@@ -40,6 +57,11 @@ def show_employees():
 
 @app.route('/employee/<int:employee_id>', methods=['GET'])
 def show_employee(employee_id):
+    """
+    Returns rendered template to show employee.
+    :param employee_id: employee id
+    :return: rendered template to show employee
+    """
     url = f'{host}api/employee/{employee_id}'
     employee = requests.get(url).json()
     return render_template('employee.html', employee=employee)
@@ -47,6 +69,10 @@ def show_employee(employee_id):
 
 @app.route('/search/', methods=['GET', 'POST'])
 def search():
+    """
+    Returns rendered template to search employees.
+    :return: rendered template to search employees
+    """
     form = SearchForm()
     if form.validate_on_submit():
         date_from = datetime.strftime(form.date_from.data, '%Y/%m/%d')
@@ -60,6 +86,10 @@ def search():
 
 @app.route('/employees/add/', methods=['GET', 'POST'])
 def add_employee():
+    """
+    Returns rendered template to add employee.
+    :return: rendered template to add employee
+    """
     EmployeeForm.update_departments_list()
     form = EmployeeForm()
     if form.validate_on_submit():
@@ -77,6 +107,11 @@ def add_employee():
 
 @app.route('/employees/edit/<int:employee_id>', methods=['GET', 'POST'])
 def edit_employee(employee_id):
+    """
+    Returns rendered template to edit employee.
+    :param employee_id: employee id
+    :return: rendered template to edit employee
+    """
     url = f'{host}api/employee/{employee_id}'
     employee = requests.get(url).json()
     EmployeeForm.update_departments_list()
@@ -101,6 +136,11 @@ def edit_employee(employee_id):
 
 @app.route('/employees/delete/<int:employee_id>', methods=['GET'])
 def delete_employee(employee_id):
+    """
+    Returns rendered template to delete employee.
+    :param employee_id: employee id
+    :return: rendered template to delete employee
+    """
     url = f'{host}api/employee/{employee_id}'
     requests.delete(url)
     return redirect(url_for('show_employees'))

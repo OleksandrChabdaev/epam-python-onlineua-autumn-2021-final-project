@@ -1,3 +1,6 @@
+"""
+Defines department web application view.
+"""
 import requests
 from flask import redirect, render_template, url_for
 from flask_wtf import FlaskForm
@@ -9,6 +12,9 @@ host = 'http://127.0.0.1:5000/'
 
 
 class DepartmentForm(FlaskForm):
+    """
+    User form to manage departments.
+    """
     name = StringField('Department name', validators=[DataRequired()])
     submit = SubmitField('Submit')
 
@@ -16,6 +22,10 @@ class DepartmentForm(FlaskForm):
 @app.route('/', methods=['GET'])
 @app.route('/departments/', methods=['GET'])
 def show_departments():
+    """
+    Returns rendered template to show all departments.
+    :return: rendered template to show all departments
+    """
     url = f'{host}api/departments'
     departments = requests.get(url).json()
     return render_template('departments.html', departments=departments)
@@ -23,6 +33,11 @@ def show_departments():
 
 @app.route('/department/<int:department_id>', methods=['GET'])
 def show_department(department_id):
+    """
+    Returns rendered template to show department with its employees.
+    :param department_id: department id
+    :return: rendered template to show department with its employees
+    """
     url = f'{host}api/department/{department_id}'
     department = requests.get(url).json()
     return render_template('department.html', department=department)
@@ -30,6 +45,10 @@ def show_department(department_id):
 
 @app.route('/departments/add/', methods=['GET', 'POST'])
 def add_department():
+    """
+    Returns rendered template to add department.
+    :return: rendered template to add department
+    """
     form = DepartmentForm()
     if form.validate_on_submit():
         url = f'{host}api/departments'
@@ -44,6 +63,11 @@ def add_department():
 
 @app.route('/departments/edit/<int:department_id>', methods=['GET', 'POST'])
 def edit_department(department_id):
+    """
+    Returns rendered template to edit department.
+    :param department_id: department id
+    :return: rendered template to edit department
+    """
     url = f'{host}api/department/{department_id}'
     department = requests.get(url).json()
     form = DepartmentForm(obj=department)
@@ -61,6 +85,11 @@ def edit_department(department_id):
 
 @app.route('/departments/delete/<int:department_id>', methods=['GET'])
 def delete_department(department_id):
+    """
+    Returns rendered template to delete department.
+    :param department_id: department id
+    :return: rendered template to delete department
+    """
     url = f'{host}api/department/{department_id}'
     requests.delete(url)
     return redirect(url_for('show_departments'))
