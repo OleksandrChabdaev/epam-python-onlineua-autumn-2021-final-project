@@ -69,7 +69,12 @@ class EmployeeServices:
         db.session.commit()
 
     @staticmethod
-    def update(employee_id, first_name=None, last_name=None, birthdate=None, department_id=None, salary=None):
+    def update(employee_id,
+               first_name=None,
+               last_name=None,
+               birthdate=None,
+               department_id=None,
+               salary=None):
         """
         Updates employee to database.
         :param employee_id: employee id

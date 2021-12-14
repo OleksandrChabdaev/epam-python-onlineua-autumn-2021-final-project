@@ -1,6 +1,7 @@
 """
 Defines employee model.
 """
+# pylint: disable=cyclic-import
 from department_app import db
 
 
@@ -9,7 +10,9 @@ class Employee(db.Model):
     Employee model.
     """
 
+    # pylint: disable=too-few-public-methods
     __tablename__ = 'employees'
+    # pylint: disable=no-member
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(64), nullable=False)
     last_name = db.Column(db.String(64), nullable=False)
@@ -37,4 +40,8 @@ class Employee(db.Model):
         Returns employee string representation.
         :return: employee string representation
         """
-        return f'Employee: {self.first_name}, {self.last_name}, {self.department}, {self.birthdate}, {self.salary}'
+        return f'Employee: {self.first_name}, ' \
+               f'{self.last_name}, ' \
+               f'{self.department}, ' \
+               f'{self.birthdate}, ' \
+               f'{self.salary}'

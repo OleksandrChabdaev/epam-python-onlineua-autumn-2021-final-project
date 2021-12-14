@@ -90,5 +90,6 @@ class DepartmentServices:
             'name': department.name,
             'employees_count': len(department.employees),
             'average_salary': DepartmentServices.get_average_salary(department),
-            'employees': [EmployeeServices.to_dict(employee.id) for employee in department.employees]
+            'employees': [EmployeeServices.to_dict(employee.id)
+                          for employee in department.employees]
         }

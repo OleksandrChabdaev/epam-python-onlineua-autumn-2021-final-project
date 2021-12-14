@@ -1,15 +1,16 @@
 """
 Defines employee web application view.
 """
-import requests
+# pylint: disable=cyclic-import
 from datetime import datetime
+import requests
 from flask import redirect, render_template, url_for
 from flask_wtf import FlaskForm
 from wtforms import DateField, IntegerField, SelectField, StringField, SubmitField
 from wtforms.validators import DataRequired
 from department_app import app
 
-host = 'http://127.0.0.1:5000/'
+HOST = 'http://127.0.0.1:5000/'
 
 
 class EmployeeForm(FlaskForm):
@@ -30,7 +31,7 @@ class EmployeeForm(FlaskForm):
         Updates department list from database.
         :return: None
         """
-        url = f'{host}api/departments'
+        url = f'{HOST}api/departments'
         departments = requests.get(url).json()
         cls.department = SelectField(choices=[department['name'] for department in departments])
 
@@ -50,7 +51,7 @@ def show_employees():
     Returns rendered template to show all employees.
     :return: rendered template to show all employees
     """
-    url = f'{host}api/employees'
+    url = f'{HOST}api/employees'
     employees = requests.get(url).json()
     return render_template('employees.html', employees=employees)
 
@@ -62,7 +63,7 @@ def show_employee(employee_id):
     :param employee_id: employee id
     :return: rendered template to show employee
     """
-    url = f'{host}api/employee/{employee_id}'
+    url = f'{HOST}api/employee/{employee_id}'
     employee = requests.get(url).json()
     return render_template('employee.html', employee=employee)
 
@@ -77,7 +78,7 @@ def search():
     if form.validate_on_submit():
         date_from = datetime.strftime(form.date_from.data, '%Y/%m/%d')
         date_to = datetime.strftime(form.date_to.data, '%Y/%m/%d')
-        url = f'{host}api/employees/search'
+        url = f'{HOST}api/employees/search'
         querystring = {'date_from': date_from, 'date_to': date_to}
         employees = requests.get(url, params=querystring).json()
         return render_template('employees.html', employees=employees)
@@ -93,7 +94,7 @@ def add_employee():
     EmployeeForm.update_departments_list()
     form = EmployeeForm()
     if form.validate_on_submit():
-        url = f'{host}api/employees'
+        url = f'{HOST}api/employees'
         requests.post(url, data={
             'first_name': form.first_name.data,
             'last_name': form.last_name.data,
@@ -112,12 +113,12 @@ def edit_employee(employee_id):
     :param employee_id: employee id
     :return: rendered template to edit employee
     """
-    url = f'{host}api/employee/{employee_id}'
+    url = f'{HOST}api/employee/{employee_id}'
     employee = requests.get(url).json()
     EmployeeForm.update_departments_list()
     form = EmployeeForm(obj=employee)
     if form.validate_on_submit():
-        url = f'{host}api/employee/{employee_id}'
+        url = f'{HOST}api/employee/{employee_id}'
         requests.put(url, data={
             'first_name': form.first_name.data,
             'last_name': form.last_name.data,
@@ -141,6 +142,6 @@ def delete_employee(employee_id):
     :param employee_id: employee id
     :return: rendered template to delete employee
     """
-    url = f'{host}api/employee/{employee_id}'
+    url = f'{HOST}api/employee/{employee_id}'
     requests.delete(url)
     return redirect(url_for('show_employees'))

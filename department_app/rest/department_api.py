@@ -1,6 +1,7 @@
 """
 Defines department REST API.
 """
+# pylint: disable=cyclic-import
 from flask import jsonify, make_response
 from flask_restful import Resource, reqparse
 from department_app.models.department import Department

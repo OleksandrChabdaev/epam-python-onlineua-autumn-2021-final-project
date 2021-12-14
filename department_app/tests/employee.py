@@ -23,4 +23,5 @@ class EmployeeModelTests(unittest.TestCase):
             birthdate=datetime.strptime('2000/01/15', '%Y/%m/%d').date(),
             salary=10000
         )
-        self.assertEqual(repr(employee), 'Employee: First Name 10, Last Name 10, None, 2000-01-15, 10000')
+        self.assertEqual(repr(employee),
+                         'Employee: First Name 10, Last Name 10, None, 2000-01-15, 10000')

@@ -1,6 +1,7 @@
 """
 Defines employee REST API.
 """
+# pylint: disable=cyclic-import
 from datetime import datetime
 from flask import jsonify, make_response
 from flask_restful import Resource, reqparse
@@ -135,7 +136,8 @@ class EmployeeApi(Resource):
         last_name = args['last_name'] if args['last_name'] else None
         department = args['department'] if args['department'] else department_name
         try:
-            birthdate = datetime.strptime(args['birthdate'], '%Y/%m/%d') if args['birthdate'] else None
+            birthdate = datetime.strptime(args['birthdate'], '%Y/%m/%d') \
+                if args['birthdate'] else None
         except ValueError:
             return make_response({'message': 'Incorrect birthdate'}, 400)
         salary = args['salary'] if args['salary'] else employee.salary

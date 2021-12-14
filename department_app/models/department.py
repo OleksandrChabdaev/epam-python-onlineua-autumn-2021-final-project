@@ -1,6 +1,7 @@
 """
 Defines department model.
 """
+# pylint: disable=cyclic-import
 from department_app import db
 
 
@@ -9,7 +10,9 @@ class Department(db.Model):
     Department model.
     """
 
+    # pylint: disable=too-few-public-methods
     __tablename__ = 'departments'
+    # pylint: disable=no-member
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), nullable=False, unique=True)
     employees = db.relationship(

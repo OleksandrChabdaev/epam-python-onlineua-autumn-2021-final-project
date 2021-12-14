@@ -1,6 +1,7 @@
 """
 Defines department and employee REST API.
 """
+# pylint: disable=cyclic-import
 from department_app import api
 from . import department_api
 from . import employee_api

@@ -1,6 +1,7 @@
 """
 Initializes web application and web service.
 """
+# pylint: disable=wrong-import-position
 import logging
 import os.path
 import sys
@@ -35,6 +36,7 @@ console_handler = logging.StreamHandler(sys.stdout)
 console_handler.setFormatter(formatter)
 console_handler.setLevel(logging.DEBUG)
 logger = app.logger
+# pylint: disable=no-member
 logger.handlers.clear()
 app.logger.addHandler(file_handler)
 app.logger.addHandler(console_handler)

@@ -1,0 +1,8 @@
+[TYPECHECK]
+
+ignored-classes=scoped_session
+
+[DESIGN]
+
+# Maximum number of arguments for function / method
+max-args=6
