@@ -3,16 +3,17 @@ Initializes web application and web service.
 """
 # pylint: disable=wrong-import-position
 import logging
-import os.path
+import os
 import sys
-from decouple import config
+from dotenv import load_dotenv
 from flask import Flask
 from flask_migrate import Migrate
 from flask_restful import Api
 from flask_sqlalchemy import SQLAlchemy
 from config import Config
 
-secret_key = config('SECRET_KEY')
+load_dotenv()
+secret_key = os.environ.get('SECRET_KEY')
 
 app = Flask(__name__)
 app.debug = True
