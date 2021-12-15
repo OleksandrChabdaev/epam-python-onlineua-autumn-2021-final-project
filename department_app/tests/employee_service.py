@@ -60,7 +60,19 @@ class EmployeeServiceTests(unittest.TestCase):
         Tests to update employee.
         :return: None
         """
-        EmployeeServices.update(10, salary=20000)
+        birthdate = datetime.strptime('2001/02/13', '%Y/%m/%d').date()
+        EmployeeServices.update(
+            employee_id=10,
+            first_name='First Name 11',
+            last_name='Last Name 11',
+            department_id=1,
+            birthdate=birthdate,
+            salary=20000
+        )
+        self.assertEqual(EmployeeServices.get_by_id(10).first_name, 'First Name 11')
+        self.assertEqual(EmployeeServices.get_by_id(10).last_name, 'Last Name 11')
+        self.assertEqual(EmployeeServices.get_by_id(10).department_id, 1)
+        self.assertEqual(EmployeeServices.get_by_id(10).birthdate, birthdate)
         self.assertEqual(EmployeeServices.get_by_id(10).salary, 20000)
 
     def test_7_delete(self):
