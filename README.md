@@ -1,7 +1,7 @@
 # Department App
 
 [![Build Status](https://app.travis-ci.com/OleksandrChabdaev/epam-python-onlineua-autumn-2021-final-project.svg?token=qu38tUNAjjD9AzqYnRJQ&branch=master)](https://app.travis-ci.com/OleksandrChabdaev/epam-python-onlineua-autumn-2021-final-project)
-[![Coverage Status](https://coveralls.io/repos/github/OleksandrChabdaev/epam-python-onlineua-autumn-2021-final-project/badge.svg?branch=master)](https://coveralls.io/github/OleksandrChabdaev/epam-python-onlineua-autumn-2021-final-project?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/OleksandrChabdaev/epam-python-onlineua-autumn-2021-final-project/badge.png?branch=master)](https://coveralls.io/github/OleksandrChabdaev/epam-python-onlineua-autumn-2021-final-project?branch=master)
 ## Description
 
 Simple web application for managing departments and employees. It uses RESTful web service to perform CRUD operations.
