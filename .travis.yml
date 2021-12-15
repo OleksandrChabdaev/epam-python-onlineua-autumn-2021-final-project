@@ -9,3 +9,6 @@ script:
   - pylint department_app
   - coverage run utest_app.py
   - coverage report
+
+after_success:
+  - coveralls
