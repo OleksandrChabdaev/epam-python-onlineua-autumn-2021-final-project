@@ -1,9 +1,11 @@
-from decouple import config
+import os
+from dotenv import load_dotenv
 
-user = config('MYSQL_USER')
-password = config('MYSQL_PASSWORD')
-server = config('MYSQL_SERVER')
-database = config('MYSQL_DATABASE')
+load_dotenv()
+user = os.environ.get('MYSQL_USER')
+password = os.environ.get('MYSQL_PASSWORD')
+server = os.environ.get('MYSQL_SERVER')
+database = os.environ.get('MYSQL_DATABASE')
 
 
 class Config:
