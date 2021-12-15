@@ -1,5 +1,7 @@
 # Department App
 
+[![Build Status](https://app.travis-ci.com/OleksandrChabdaev/epam-python-onlineua-autumn-2021-final-project.svg?token=qu38tUNAjjD9AzqYnRJQ&branch=master)](https://app.travis-ci.com/OleksandrChabdaev/epam-python-onlineua-autumn-2021-final-project)
+
 ## Description
 
 Simple web application for managing departments and employees. It uses RESTful web service to perform CRUD operations.
