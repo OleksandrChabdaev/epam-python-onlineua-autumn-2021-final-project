@@ -39,7 +39,7 @@ class EmployeeServiceTests(unittest.TestCase):
         """
         date_from = datetime.strptime('2001/01/11', '%Y/%m/%d')
         date_to = datetime.strptime('2005/05/15', '%Y/%m/%d')
-        self.assertEqual(len(EmployeeServices.get_by_birthdate(date_from, date_to)), 5)
+        self.assertEqual(len(EmployeeServices.get_by_birthdate(date_from, date_to)), 4)
 
     def test_5_add(self):
         """

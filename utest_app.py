@@ -19,6 +19,9 @@ if __name__ == '__main__':
     app.config.from_object(TestingConfig)
     api = Api(app)
     db = SQLAlchemy(app)
+    app_context = app.app_context()
+    app_context.push()
+    db.create_all()
 
     appTestSuite = unittest.TestSuite()
     appTestSuite.addTest(unittest.makeSuite(DepartmentModelTests))
@@ -27,3 +30,6 @@ if __name__ == '__main__':
     appTestSuite.addTest(unittest.makeSuite(EmployeeServiceTests))
     runner = unittest.TextTestRunner(verbosity=2)
     runner.run(appTestSuite)
+
+    db.session.remove()
+    db.drop_all()
