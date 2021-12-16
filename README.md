@@ -7,29 +7,21 @@
 Simple web application for managing departments and employees. It uses RESTful web service to perform CRUD operations.
 The web application allows:
 - display a list of departments and the average salary (calculated automatically) for these departments;
-- display a list of employees in the departments with an indication of the salary for each employee and a search field
+- display a list of employees in the departments with an indication of the salary for each employee and search fields
 to search for employees born in the period between dates;
 - change (add / edit / delete) the above data.
 
 ## Build project
 
-Set up and activate virtual environment:
-```
-virtualenv venv
-source env/bin/activate
-```
 Install requirements:
 ```
 pip install -r requirements.txt
 ```
-Set environment variables MYSQL_USER, MYSQL_PASSWORD, MYSQL_SERVER, MYSQL_DATABASE
-Optionally populate database with initial data
-```
-python -m department_app/models/populate.py
-```
+Set environment variables MYSQL_USER, MYSQL_PASSWORD, MYSQL_SERVER, MYSQL_DATABASE.
+
 Run project:
 ```
-python -m app.py
+python -m wsgi.py
 ```
 
 ## Web application
