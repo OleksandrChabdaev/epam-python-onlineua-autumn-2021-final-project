@@ -21,7 +21,7 @@ Set environment variables MYSQL_USER, MYSQL_PASSWORD, MYSQL_SERVER, MYSQL_DATABA
 
 Run project:
 ```
-python -m wsgi.py
+python wsgi.py
 ```
 
 ## Web application
