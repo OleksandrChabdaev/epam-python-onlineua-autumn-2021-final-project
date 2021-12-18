@@ -5,8 +5,8 @@ import json
 import unittest
 from department_app import app
 
-HOST = 'http://127.0.0.1:5000'
 client = app.test_client()
+HOST = 'http://127.0.0.1:5000'
 
 
 class DepartmentApiTests(unittest.TestCase):
