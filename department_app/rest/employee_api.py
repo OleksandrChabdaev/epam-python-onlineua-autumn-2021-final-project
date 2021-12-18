@@ -166,6 +166,6 @@ class EmployeeApi(Resource):
         :return: message and status code
         """
         if not EmployeeServices.get_by_id(employee_id):
-            return make_response({'message': 'Department not found'}, 404)
+            return make_response({'message': 'Employee not found'}, 404)
         EmployeeServices.delete(employee_id)
-        return make_response({'message': 'Department has been successfully deleted'}, 204)
+        return make_response({'message': 'Employee has been successfully deleted'}, 204)

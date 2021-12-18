@@ -3,5 +3,5 @@ from department_app.models.populate import Populate
 
 
 if __name__ == '__main__':
-    app.run()
     # Populate.populate()
+    app.run()

@@ -10,7 +10,7 @@ from flask import Flask
 from flask_migrate import Migrate
 from flask_restful import Api
 from flask_sqlalchemy import SQLAlchemy
-from config import Config
+from config import TestingConfig
 
 load_dotenv()
 secret_key = os.environ.get('SECRET_KEY')
@@ -18,7 +18,7 @@ secret_key = os.environ.get('SECRET_KEY')
 app = Flask(__name__)
 app.debug = True
 app.config['SECRET_KEY'] = secret_key
-app.config.from_object(Config)
+app.config.from_object(TestingConfig)
 api = Api(app)
 db = SQLAlchemy(app)
 
